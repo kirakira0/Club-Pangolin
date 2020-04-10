@@ -1,0 +1,12 @@
+.tile {
+    display: inline-flex
+}
+
+.rock {
+    background-color: darkgray;
+}
+
+.tree {
+    background-color: rgb(27, 39, 7);
+}
+
