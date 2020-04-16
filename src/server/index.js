@@ -1,10 +1,12 @@
 //set up the server
-var app = require('http').createServer()
-var io = module.exports.io = require('socket.io')(app)
+let app = require('http').createServer()
+let io = module.exports.io = require('socket.io')(app)
 
 //set port to specified varible in env file, if it exists 
 //or set to default 3231
-const PORT = process.env.PORT || 3231
+
+//const PORT = process.env.PORT || 3231
+const PORT = 3231
 
 const SocketManager = require('./SocketManager')
 
@@ -12,5 +14,5 @@ const SocketManager = require('./SocketManager')
 io.on('connection', SocketManager)
 
 app.listen(PORT, ()=>{
-    console.log("Connected to port: " + PORT); 
+    console.log("Server running on port: " + PORT); 
 })

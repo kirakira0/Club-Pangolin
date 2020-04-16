@@ -1,10 +1,10 @@
 import React from 'react';
+import Layout from './components/Layout'; 
+import './styles/index.css'; 
 
 function App() {
   return (
-    <div className="container">
-      App
-    </div>
+    <Layout title="Chat App"/>
   );
 }
 
