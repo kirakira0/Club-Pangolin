@@ -1,12 +1,30 @@
 .tile {
-    display: inline-flex
+    display: inline-flex;
+
 }
 
+
+
 .rock {
-    background-color: darkgray;
+  background-image: url('rock.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .tree {
-    background-color: rgb(27, 39, 7);
+  background-image: url('tree.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
+.chest {
+    background-image: url('treasureChest.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.flower {
+    background-image: url('flower.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
