@@ -4,7 +4,6 @@
 }
 
 
-
 .rock {
   background-image: url('rock.png');
   background-repeat: no-repeat;
@@ -14,6 +13,7 @@
 .tree {
   background-image: url('tree.png');
   background-repeat: no-repeat;
+  align-items: center;
   background-size: contain;
 }
 
@@ -23,8 +23,27 @@
     background-size: contain;
 }
 
-.flower {
-    background-image: url('flower.png');
+.fern {
+    background-image: url('fern.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.forest_tree {
+    background-image: url('forest_tree.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.twig {
+    background-image: url('twig.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.bird {
+    background-image: url('bird.png');
     background-repeat: no-repeat;
     background-size: contain;
 }

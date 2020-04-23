@@ -1,61 +1,11 @@
 import React, { useState } from 'react';
 import './styles.css'
+import {MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE} from '../../config/constants.js'
+import {backgrounds, scenes} from './scenes.js'
 
-//https://www.youtube.com/watch?v=DyWUW7Px1MQ
+//tutorials used: https://www.youtube.com/watch?v=DyWUW7Px1MQ
+//https://www.youtube.com/watch?v=QZcNGfcn-oo&t=1089s
 
-
-const scenes = [
-    // 0 means there is nothing in that tile
-    // 1 means rock
-    // 2 means tree
-    //3 means chest
-    // 4 means flower
-    [
-      [2,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0],
-      [1,0,0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,4,0,0,0,0,0,4,4,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],
-      [0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,2,2,2,2,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2],
-    ],
-    [
-      [1,0,0,4,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0],
-      [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0],
-      [0,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,1,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,0,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0],
-      [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0],
-    ]
-]
-
-const backgrounds = [{color: "green"},
-                    {color: "darkgreen"}]
 
 
 const MapTile = ({ tile }) => {
@@ -71,34 +21,44 @@ const MapTile = ({ tile }) => {
             sprite = 'chest'
             break;
         case 4:
-            sprite = 'flower'
+            sprite = 'fern'
+            break;
+        case 5:
+            sprite = 'forest_tree'
+            break;
+        case 6:
+            sprite = 'twig'
+            break;
+        case 7:
+            sprite = 'bird'
             break;
         default:
-            sprite = 'xxx'
+            sprite = 'grass'
     }
 
     return <div className = {"tile " + sprite}
         style={{
-        width: '40px',
-        height: '40px',
+        width: SPRITE_SIZE,
+        height: SPRITE_SIZE,
         padding: '0px'}}>
     </div>
 }
 
 
-const Map = ({ props }) => {
-    const [sceneNumber, setScene] = useState(1);
+const Map = ({ tiles }) => {
+    const [sceneIndex, setScene] = useState(1);
 
     return(
         <div style={{
-                width: '800px',
-                height: '800px',
-                backgroundColor: backgrounds[sceneNumber].color,
+                width: MAP_WIDTH+'px',
+                height: MAP_HEIGHT+'px',
+                backgroundColor: backgrounds[sceneIndex].color,
+                border: '4px solid white',
                 margin:  '10px auto',
                 display: 'left'
             }}
         >
-        {scenes[sceneNumber].map( row => row.map(tile => <MapTile tile={tile}/>) )}
+        {scenes[sceneIndex].map( row => row.map(tile => <MapTile tile={tile}/>) )}
         </div>
     )
 }
