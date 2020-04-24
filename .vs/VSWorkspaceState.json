@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\public",
+    "\\src",
+    "\\src\\features",
+    "\\src\\features\\map",
+    "\\src\\features\\player"
+  ],
+  "SelectedNode": "\\src\\features\\player\\player_walk.png",
+  "PreviewInSolutionExplorer": false
+}
