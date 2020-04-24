@@ -7,7 +7,7 @@ function Player(props) {
     return (
         <div style={
             {
-                position: "absolute",
+                position: "relative",
                 top: props.position[1],
                 left: props.position[0],
                 backgroundImage: `url('${walkSprite}')`,
