@@ -1,0 +1,41 @@
+[33mcommit 6ee1fc42564153b9d5f4be7e3e057082d7bf4ec1[m[33m ([m[1;36mHEAD -> [m[1;32mmini[m[33m, [m[1;31morigin/mini[m[33m)[m
+Author: Julian Gonzalez <jgonz156@lion.lmu.edu>
+Date:   Thu Apr 23 17:14:01 2020 -0700
+
+    Contained character within map and added collision
+
+[33mcommit 74a66c321d9ea31cbb110a4a9743a9fcdbb562ad[m
+Author: mayaepps <mepps@lion.lmu.edu>
+Date:   Wed Apr 22 22:09:19 2020 -0700
+
+    improving map
+
+[33mcommit f90c9d1cba2073216a0505c946187eeee769a08e[m
+Author: mayaepps <mepps@lion.lmu.edu>
+Date:   Thu Apr 16 13:38:32 2020 -0700
+
+    added images for the tiles in the background
+
+[33mcommit 3f86e7fc0d8f3613e0df2fa2de5ef4905fc80a18[m
+Author: Julian Gonzalez <jgonz156@lion.lmu.edu>
+Date:   Thu Apr 16 00:48:25 2020 -0700
+
+    Added Movement to Small On Screen Character
+
+[33mcommit a26da41042da8aff7415a4aa1a03966fe76e3cf9[m
+Author: mayaepps <mepps@lion.lmu.edu>
+Date:   Thu Apr 9 21:31:47 2020 -0700
+
+    first rough draft of backgrounds
+
+[33mcommit 25cc8b234e9e70c38e22d6a898719ed9be5740c9[m
+Author: kirakira0 <kiratoal0@gmail.com>
+Date:   Thu Apr 2 23:33:33 2020 -0700
+
+    Initial commit
+
+[33mcommit ad969b26890debfe71b77ee73c1380cee9034595[m
+Author: kirakira0 <kiratoal0@gmail.com>
+Date:   Thu Apr 2 23:29:06 2020 -0700
+
+    Initialize project using Create React App
