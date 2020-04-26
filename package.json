@@ -10,7 +10,13 @@
     "react-dom": "^16.13.1",
     "react-game-engine": "^1.0.0",
     "react-google-login": "^5.1.10",
+<<<<<<< HEAD
     "react-scripts": "3.4.1"
+=======
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.1",
+    "redux": "^4.0.5"
+>>>>>>> 95f17cec67501b06c890c322129b9c1b9dbcd038
   },
   "scripts": {
     "start": "react-scripts start",

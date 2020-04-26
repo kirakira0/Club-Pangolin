@@ -1,42 +1,13 @@
 import React, { useState } from 'react';
 import './styles.css'
+import {MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE} from '../../config/constants.js'
+import { backgrounds, scenes } from './scenes.js'
+import Player from "../player"
+import store from "../../config/store"
+import { useStore } from 'react-redux';
 
-//https://www.youtube.com/watch?v=DyWUW7Px1MQ
-
-
-const scenes = [
-    // 0 means there is nothing in that tile
-    // 1 means rock
-    // 2 means tree
-    [
-        [1,0,0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0],
-        [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    ],
-    [
-        [1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-    ]
-]
-
-const backgrounds = [{color: 'blue'},       
-                    {color: 'green'}]
-
+//tutorials used: https://www.youtube.com/watch?v=DyWUW7Px1MQ
+//https://www.youtube.com/watch?v=QZcNGfcn-oo&t=1089s
 
 const MapTile = ({ tile }) => {
     let sprite;
@@ -47,35 +18,75 @@ const MapTile = ({ tile }) => {
         case 2:
             sprite = 'tree'
             break;
+        case 3:
+            sprite = 'chest'
+            break;
+        case 4:
+            sprite = 'fern'
+            break;
+        case 5:
+            sprite = 'forest_tree'
+            break;
+        case 6:
+            sprite = 'twig'
+            break;
+        case 7:
+            sprite = 'bird'
+            break;
         default:
-            sprite = 'xxx'
+            sprite = 'grass'
     }
 
     return <div className = {"tile " + sprite}
-        style={{ 
-        width: '40px',
-        height: '40px',
-        padding: '0px'}}>
+        style={{
+        width: SPRITE_SIZE,
+            height: SPRITE_SIZE,
+            border: "0.0001px solid white",
+            padding: '0px',
+            margin: "0px 0px 0px 0px"
+        }}>
+
     </div>
 }
 
 
-const Map = ({ props }) => {
-    const [sceneNumber, setScene] = useState(0);
+const Map = ({ tiles }) => {
 
-    return(
-        <div style={{
-                width: '800px',
-                height: '400px',
-                backgroundColor: backgrounds[sceneNumber].color,
-                margin:  '10px auto'
-            }}
-        > 
-        {
-            scenes[sceneNumber].map( row => row.map(tile => <MapTile tile={tile}/>) )
+    function handleKeyDown(e) {
+        e.preventDefault()
+        switch (e.keyCode) {
+            case 49:
+                return setScene(sceneIndex = 0);
+            case 50:
+                return setScene(sceneIndex = 1);
+            case 51:
+                return setScene(sceneIndex = 2);
+            default:
         }
-        </div>
+    }
+
+    window.addEventListener("keydown", (e) => {
+        handleKeyDown(e)
+    })
+
+
+    let [sceneIndex, setScene] = useState(0);
+    
+
+    return (
+        <div style={{
+                    position: "absolute",
+                    width: MAP_WIDTH+'px',
+                    height: MAP_HEIGHT+'px',
+                    backgroundColor: backgrounds[sceneIndex].color,
+                    border: '4px solid white',
+            display: 'left',
+                    padding: "0px"
+                }}
+        >
+            {scenes[sceneIndex].map(row => row.map(tile => <MapTile tile={tile} />))}
+            
+            </div>
     )
 }
-
 export default Map

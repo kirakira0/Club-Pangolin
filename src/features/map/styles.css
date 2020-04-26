@@ -1,12 +1,49 @@
 .tile {
-    display: inline-flex
+    display: inline-flex;
+
 }
 
+
 .rock {
-    background-color: darkgray;
+  background-image: url('rock.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .tree {
-    background-color: rgb(27, 39, 7);
+  background-image: url('tree.png');
+  background-repeat: no-repeat;
+  align-items: center;
+  background-size: contain;
 }
 
+.chest {
+    background-image: url('treasureChest.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.fern {
+    background-image: url('fern.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.forest_tree {
+    background-image: url('forest_tree.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.twig {
+    background-image: url('twig.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+
+.bird {
+    background-image: url('bird.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
