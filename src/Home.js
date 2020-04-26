@@ -1,5 +1,8 @@
 import React from 'react';
-import App from './App.js'; 
+import App from './App'; 
+
+// npm install --save react-router-dom
+
 
 function Home() {
     return(

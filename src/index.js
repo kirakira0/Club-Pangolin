@@ -5,11 +5,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from "react-redux"
 import store from "./config/store"
+import {BrowserRouter} from 'react-router-dom'; //For navigating multiple pages
 
 ReactDOM.render(
+  //wrapping App in BrowserRouter allows us to use router methods in App.js
+  <BrowserRouter>
     <Provider store={store}>
         <App />
-    </Provider>,
+    </Provider>
+  </BrowserRouter>, 
   document.getElementById('root')
 );
 
