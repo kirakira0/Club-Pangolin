@@ -10,7 +10,7 @@ import {Route, Link} from 'react-router-dom';
 function App() {
   return (
     <div>
-        <Route exact path='/home' component={Home}/> 
+        <Route exact path='/' component={Home}/> 
         <Route exact path='/game' component={Game}/> 
 
     </div>

@@ -9,7 +9,8 @@ import {Route, Link} from 'react-router-dom';
 function Game() {
   return (
     <div>
-          <h1>Club Pangolin</h1> 
+          <h1>Club Pangolin</h1>
+          <Link to='/'>Home</Link> 
           <div style={{
               position: "relative",
               width: MAP_WIDTH + 'px',
