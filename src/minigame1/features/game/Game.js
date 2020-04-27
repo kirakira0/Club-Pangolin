@@ -22,8 +22,16 @@ const StartGame = () => {
     const dispatch = useDispatch()
     return (
         <div className="opening-menu">
-            <h3>Welcome to game</h3>
-            <button className="button" onClick={() => dispatch(gameStart())}>
+            <h3 style={{color: 'red'}}>Welcome to game</h3>
+            <button 
+                className="button" 
+                onClick={() => dispatch(gameStart())}
+                style={{
+                    position: 'absolute',
+                    bottom: '-40px',
+                    left: '370px'
+                }}
+            >
                 Start
             </button>
         </div>
@@ -32,6 +40,7 @@ const StartGame = () => {
 
 const useKeyPress = () => {
     const dispatch = useDispatch()
+    //keydown
     const handleKeyPress = React.useCallback((e) => {
         e.preventDefault()
         switch(e.keyCode) {
@@ -45,6 +54,7 @@ const useKeyPress = () => {
                 console.log(e.keyCode)
         }
     }, [dispatch])
+    //keyup
     const handleKeyUp = React.useCallback((e) => {
         e.preventDefault()
         switch(e.keyCode) {
@@ -90,7 +100,14 @@ function Game() {
     return(
         <>  
             <div style={{
-                color: 'white'
+                color: 'white',
+                backgroundColor: 'purple',
+                borderColor: 'white',
+                border: '5px',
+                position: 'relative',
+                height: '300px',
+                width: '800px',
+
             }}>
                 Health: {health} Score: {score} 
                 <Player />
