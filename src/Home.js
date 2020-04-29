@@ -10,10 +10,8 @@ import {Route, Link} from 'react-router-dom';
 function Home() {
     return(
         <div className = "Home">
-            <p>welcome to</p>
             <h1>Club Pangolin</h1>
-            <p>a project dedicated to fighting pangolin trafficking through education and entertainment </p>
-            <p>developed by maya epps, julian gonzalez, joshua stukenborg, and kira toal</p>
+            <p>Welcome to Club Pangolin, a project dedicated to fighting pangolin trafficking through education and entertainment </p>
             <Link to='/game'>Game</Link>
         </div>
     )
