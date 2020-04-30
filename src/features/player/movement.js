@@ -11,18 +11,32 @@ let currentYPos = 0
 let currentXPos = 0
 let sceneIndex = 0
 let isThereNoObjectData = true
+let fireSecondDispatch = false
+
+function observeSceneChange(currentScene) {
+    currentXPos = 0
+    sceneIndex = currentScene + 1
+    store.dispatch({ type: "CHANGE_SCENE", payload: { value: 1 } })
+    const oldYPos = store.getState().player.position[1]
+    store.dispatch({ type: "MOVE_PLAYER", payload: { position: [0, oldYPos] } })
+    fireSecondDispatch = true
+}
 
 function observeObject(direction, changeType) {
     const sceneData = scenes
     let currentScene = sceneIndex;
     console.log("currentYPos " + currentYPos)
     console.log("currentXPos " + currentXPos)
+    console.log("currentScene " + currentScene)
     let futureX = 0
     let futureY = 0
     if (direction === "X" && changeType === "+" && !(currentXPos === 20)) { futureX = 1 }
     if (direction === "X" && changeType === "-" && !(currentXPos === 0)) { futureX = -1 }
-    if (direction === "Y" && changeType === "+" && !(currentYPos === 10)) { futureY = 1 }
+    if (direction === "Y" && changeType === "+" && !(currentYPos === 13)) { futureY = 1 }
     if (direction === "Y" && changeType === "-" && !(currentYPos === 0)) { futureY = -1 }
+    if (currentXPos + futureX === 20 && sceneIndex < 2) {
+        observeSceneChange(sceneIndex)
+    }
     if (sceneData[currentScene][currentYPos + futureY][currentXPos + futureX] > 0) {
         return false
     }
@@ -33,7 +47,7 @@ function changeCurrentPosition(direction, changeType) {
     isThereNoObjectData = observeObject(direction, changeType);
     if (direction === "X") {
 
-        if (changeType === "+" && currentXPos < 20 && isThereNoObjectData) {
+        if (changeType === "+" && currentXPos < 19 && isThereNoObjectData) {
             currentXPos++
         }
 
@@ -45,7 +59,7 @@ function changeCurrentPosition(direction, changeType) {
 
     if (direction === "Y") {
 
-        if (changeType === "+" && currentYPos < 10 && isThereNoObjectData) {
+        if (changeType === "+" && currentYPos < 13 && isThereNoObjectData) {
             currentYPos++
         }
 
@@ -79,20 +93,26 @@ export default function handleMovement(player) {
 
     function observeBoundaries(oldPos, newPos) {
         console.log(isThereNoObjectData)
-        return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - 40) && (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT) && isThereNoObjectData ? newPos : oldPos
+        return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - 40) && (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - 40) && isThereNoObjectData ? newPos : oldPos
     }
 
     function dispatchMove(direction) {
-        const oldPos = store.getState().player.position
-        store.dispatch(
-            {
-                type: "MOVE_PLAYER",
-                payload: {position: observeBoundaries(oldPos, getNewPosition(direction))}
-            }
+
+            const oldPos = store.getState().player.position
+            store.dispatch(
+                {
+                    type: "MOVE_PLAYER",
+                    payload: { position: observeBoundaries(oldPos, getNewPosition(direction)) }
+                }
         )
+        if (fireSecondDispatch === true) {
+            store.dispatch({ type: "MOVE_PLAYER", payload: { position: [0, oldPos[1]] } })
+            fireSecondDispatch = false
+        }
     }
 
     function handleKeyDown(e) {
+
         e.preventDefault()
 
         switch (e.keyCode) {
@@ -104,12 +124,6 @@ export default function handleMovement(player) {
                 return dispatchMove('EAST')
             case 40:
                 return dispatchMove('SOUTH')
-            case 49:
-                return sceneIndex = 0;
-            case 50:
-                return sceneIndex = 1;
-            case 51:
-                return sceneIndex = 2;
             default:
                 console.log(e.keyCode)
         }
@@ -118,6 +132,8 @@ export default function handleMovement(player) {
     window.addEventListener("keydown", (e) => {
         handleKeyDown(e)
     })
+
+    
 
     return player
 }

@@ -5,19 +5,19 @@ import Player from "./features/player"
 import './App.css'
 import { MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE } from './config/constants.js'
 import {Route, Link} from 'react-router-dom'; 
-import {db} from './firebase'; 
+//import {db} from './firebase'; 
 
 function Game() {
 
-  useEffect(() => {
-    // get the whole collection
-    db.collection("facts")
-    .get()
-    .then(querySnapshot => {
-      const data = querySnapshot.docs.map(doc => doc.data());
-      console.log(data); // array of cities objects
-    });
-  }, []); 
+//  useEffect(() => {
+//    // get the whole collection
+//    db.collection("facts")
+//    .get()
+//    .then(querySnapshot => {
+//      const data = querySnapshot.docs.map(doc => doc.data());
+//      console.log(data); // array of cities objects
+//    });
+//  }, []); 
 
   return (
     <div>
