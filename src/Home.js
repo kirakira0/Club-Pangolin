@@ -65,7 +65,7 @@ function Home() {
                     <img src={photo4} width="100%" alt="Logo" />
                     <p>A ground pangolin, also known as Temminck’s pangolin or Cape pangolin (Manis temminckii) © Dana Allen</p>
                     <img src={photo3} width="100%" alt="Logo" />
-                    <p>Pangolin scales are made of the same substance that human fingernails and rhino harns are made of: keratin. <a href="https://www.nationalgeographic.com/animals/mammals/group/pangolins/" target="_blank">(source)</a> © Nigel Dennis</p>
+                    <p>Pangolin scales are made of the same substance that human fingernails and rhino horns are made of: keratin. <a href="https://www.nationalgeographic.com/animals/mammals/group/pangolins/" target="_blank">(source)</a> © Nigel Dennis</p>
                     <img src={photo6} width="100%" alt="Logo" />
                     <p>Ground pangolin taking a bath © Scott Hurd</p>
                 </div>
