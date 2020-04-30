@@ -2,6 +2,7 @@ import React from 'react';
 import './Home.css'; 
 import App from './App';
 import Game from './Game'; 
+import Minigame1 from './Minigame1'; 
 import {Route, Link} from 'react-router-dom'; 
 
 import photo1 from "./images/baby_pangolin.jpg";
@@ -32,6 +33,8 @@ function Home() {
                 </div>
                 <div className="col2">
                     <Link to='/game'>Game</Link>
+                    <Link to='/minigame1'> Minigame 1</Link>
+                    <Link to='/minigame2'> Minigame 2</Link>
                 </div>
                 <div className="col3">
                     info
