@@ -3,6 +3,10 @@ import {connect} from "react-redux"
 import walkSprite from "./player_walk.png"
 import handleMovement from "./movement"
 
+//tutorials used: https://www.youtube.com/watch?v=DyWUW7Px1MQ
+//https://www.youtube.com/watch?v=QZcNGfcn-oo&t=1089s
+//https://www.youtube.com/watch?v=J6Xs3eGTfTQ
+
 function Player(props) {
     return (
         <div style={
