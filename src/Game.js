@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Map from './features/map'
-import Home from './Home'; 
+import Home from './Home';
 import Player from "./features/player"
 import './App.css'
 import { MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE } from './config/constants.js'
@@ -29,7 +29,7 @@ function Game() {
 
           <h2> {firebaseData} </h2>
 
-          <Link to='/'>Home</Link> 
+          <Link to='/'>Home</Link>
           <div style={{
               position: "relative",
               width: MAP_WIDTH + 'px',
