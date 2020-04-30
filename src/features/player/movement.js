@@ -34,8 +34,12 @@ function observeObject(direction, changeType) {
     if (direction === "X" && changeType === "-" && !(currentXPos === 0)) { futureX = -1 }
     if (direction === "Y" && changeType === "+" && !(currentYPos === 13)) { futureY = 1 }
     if (direction === "Y" && changeType === "-" && !(currentYPos === 0)) { futureY = -1 }
+
     if (currentXPos + futureX === 20 && sceneIndex < 2) {
         observeSceneChange(sceneIndex)
+    }
+    if (sceneData[currentScene][currentYPos + futureY][currentXPos + futureX] === 3) {
+        store.dispatch({ type: "OPEN_CHEST", payload: { value: 1 } })
     }
     if (sceneData[currentScene][currentYPos + futureY][currentXPos + futureX] > 0) {
         return false
