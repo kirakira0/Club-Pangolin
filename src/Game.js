@@ -9,31 +9,26 @@ import {db} from './firebase';
 
 function Game() {
 
-    let firebaseData = "";
+ useEffect(() => {
+   // get the whole collection
+   db.collection("facts")
+   .get()
+   .then(querySnapshot => {
+     const data = querySnapshot.docs.map(doc => doc.data());
+     console.log(data); 
+     console.log(data[0].diet); 
+     console.log(data[0].sleep); 
 
-  useEffect(() => {
-    // get the whole collection
-    db.collection("facts")
-    .get()
-    .then(querySnapshot => {
-      const data = querySnapshot.docs.map(doc => doc.data());
-        console.log(data); 
-        firebaseData = data[0].diet;
-        console.log(firebaseData);
-    });
-  }, []); 
-
-    
+   });
+ }, []); 
 
   return (
     <div>
           <h1>Club Pangolin</h1>
+          <p>Return <Link to='/'>Home</Link></p>
+          <p>Explore some of the different environments that pangolins inhabit!</p>
+          <p>Use the arrow keys to move around and the enter key to interact with objects!</p>
 
-          <h2>put instructions here</h2>
-
-          <h2> {firebaseData} </h2>
-
-          <Link to='/'>Home</Link>
           <div style={{
               position: "relative",
               width: MAP_WIDTH + 'px',

@@ -10,6 +10,9 @@ export const scenes = [
     // 3 means chest
     // 4 means fern
     // 5 means forest-tree
+
+    //scenes[sceneIndex][currentY][currentX]
+
     [
       //savanna
       [0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0],
