@@ -4,8 +4,8 @@ import Home from './Home';
 import Player from "./features/player"
 import './App.css'
 import { MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE } from './config/constants.js'
-import {Route, Link} from 'react-router-dom';
-import {db} from './firebase';
+import {Route, Link} from 'react-router-dom'; 
+import {db} from './firebase'; 
 
 function Game() {
 
@@ -15,19 +15,20 @@ function Game() {
    .get()
    .then(querySnapshot => {
      const data = querySnapshot.docs.map(doc => doc.data());
-     console.log(data); // array of cities objects
+     console.log(data); 
+     console.log(data[0].diet); 
+     console.log(data[0].sleep); 
+
    });
- }, []);
+ }, []); 
 
   return (
     <div>
           <h1>Club Pangolin</h1>
+          <p>Return <Link to='/'>Home</Link></p>
+          <p>Explore some of the different environments that pangolins inhabit!</p>
+          <p>Use the arrow keys to move around and the enter key to interact with objects!</p>
 
-          <h2>put instructions here</h2>
-
-          <h2> put data here </h2>
-
-          <Link to='/'>Home</Link>
           <div style={{
               position: "relative",
               width: MAP_WIDTH + 'px',
