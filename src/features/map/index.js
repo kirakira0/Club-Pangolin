@@ -44,7 +44,7 @@ const MapTile = ({ tile }) => {
             border: "0.0001px solid white",
             padding: '0px',
             margin: "0px 0px 0px 0px"
-        }}>
+        }} >
 
     </div>
 }
@@ -56,11 +56,11 @@ const Map = ({ tiles }) => {
         e.preventDefault()
         switch (e.keyCode) {
             case 49:
-                return setScene(sceneIndex = 0);
+                return setScene(0);
             case 50:
-                return setScene(sceneIndex = 1);
+                return setScene(1);
             case 51:
-                return setScene(sceneIndex = 2);
+                return setScene(2);
             default:
         }
     }
@@ -71,7 +71,8 @@ const Map = ({ tiles }) => {
 
 
     let [sceneIndex, setScene] = useState(0);
-    
+    let currentKey = -1;
+
 
     return (
         <div style={{
@@ -80,12 +81,12 @@ const Map = ({ tiles }) => {
                     height: MAP_HEIGHT+'px',
                     backgroundColor: backgrounds[sceneIndex].color,
                     border: '4px solid white',
-            display: 'left',
+                    display: 'left',
                     padding: "0px"
                 }}
         >
-            {scenes[sceneIndex].map(row => row.map(tile => <MapTile tile={tile} />))}
-            
+              {scenes[sceneIndex].map(row => row.map(tile => <MapTile key={currentKey+=1} tile={tile} />))}
+
             </div>
     )
 }

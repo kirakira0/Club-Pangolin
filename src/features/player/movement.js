@@ -11,18 +11,14 @@ let isThereNoObjectData = true
 function observeObject(direction, changeType) {
     const sceneData = scenes
     let currentScene = sceneIndex;
-    console.log("currentScene"+ currentScene)
-    console.log("currentYPos" + currentYPos)
-    console.log("currentXPos" + currentXPos)
+    console.log("currentYPos " + currentYPos)
+    console.log("currentXPos " + currentXPos)
     let futureX = 0
     let futureY = 0
-    if (direction == "X" && changeType == "+" && !(currentXPos == 20)) { futureX = 1 }
-    if (direction == "X" && changeType == "-" && !(currentXPos == 0)) { futureX = -1 }
-    if (direction == "Y" && changeType == "+" && !(currentYPos == 10)) { futureY = 1 }
-    if (direction == "Y" && changeType == "-" && !(currentYPos == 0)) { futureY = -1 }
-    console.log("futureScene" + currentScene)
-    console.log("futureYPos" + (currentYPos + futureY))
-    console.log("futureXPos" + (currentXPos + futureX))
+    if (direction === "X" && changeType === "+" && !(currentXPos === 20)) { futureX = 1 }
+    if (direction === "X" && changeType === "-" && !(currentXPos === 0)) { futureX = -1 }
+    if (direction === "Y" && changeType === "+" && !(currentYPos === 10)) { futureY = 1 }
+    if (direction === "Y" && changeType === "-" && !(currentYPos === 0)) { futureY = -1 }
     if (sceneData[currentScene][currentYPos + futureY][currentXPos + futureX] > 0) {
         return false
     }
@@ -31,25 +27,25 @@ function observeObject(direction, changeType) {
 
 function changeCurrentPosition(direction, changeType) {
     isThereNoObjectData = observeObject(direction, changeType);
-    if (direction == "X") {
+    if (direction === "X") {
 
-        if (changeType == "+" && currentXPos < 20 && isThereNoObjectData) {
+        if (changeType === "+" && currentXPos < 20 && isThereNoObjectData) {
             currentXPos++
         }
 
-        if (changeType == "-" && currentXPos > 0 && isThereNoObjectData) {
+        if (changeType === "-" && currentXPos > 0 && isThereNoObjectData) {
             currentXPos--
         }
 
     }
 
-    if (direction == "Y") {
+    if (direction === "Y") {
 
-        if (changeType == "+" && currentYPos < 10 && isThereNoObjectData) {
+        if (changeType === "+" && currentYPos < 10 && isThereNoObjectData) {
             currentYPos++
         }
 
-        if (changeType == "-" && currentYPos > 0 && isThereNoObjectData) {
+        if (changeType === "-" && currentYPos > 0 && isThereNoObjectData) {
             currentYPos--
         }
 
@@ -94,6 +90,7 @@ export default function handleMovement(player) {
 
     function handleKeyDown(e) {
         e.preventDefault()
+
         switch (e.keyCode) {
             case 37:
                 return dispatchMove('WEST')
@@ -109,7 +106,7 @@ export default function handleMovement(player) {
                 return sceneIndex = 1;
             case 51:
                 return sceneIndex = 2;
-            default: 
+            default:
                 console.log(e.keyCode)
         }
     }
