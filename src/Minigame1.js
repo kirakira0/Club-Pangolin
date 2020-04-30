@@ -3,9 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import Player from './minigame1/features/player/Player'
 import Grass from './minigame1/features/obstacles/Grass'
 import Bird from './minigame1/features/obstacles/Bird'
-import App from './App';
-import Game from './Game'; 
-import {Route, Link} from 'react-router-dom'; 
 import {
     jump,
     crouch,
@@ -14,9 +11,7 @@ import {
     gameStart,
     gameOver,
     gameTick,
-    setGameInterval,
     resetSpeed,
-    selectPosition,
     selectHealth,
     selectStatus,
     incrementSpeed,
@@ -90,14 +85,11 @@ function Minigame1() {
             if(componentStatus === "playing") {
                 console.log("in timer status", status)
                 timer = setInterval(() => {
-                    //console.log("this is still happening")
                     dispatch(gameTick())
                     dispatch(checkCollision())
                     dispatch(incrementSpeed())
                     dispatch(gameOver())
                 }, 16.67)
-                console.log("Game has started")
-                console.log("timer: ", timer)
             } else {
                 setStatus("over")
                 clearInterval(timer)

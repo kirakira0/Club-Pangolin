@@ -46,21 +46,21 @@ export const gameSlice = createSlice({
             state.height = '80px'
         },
         checkCollision: state => {
-            if(state.grassCollision == false && state.grassCollisionAllowed == true) {
-                if (state.grassX - 50 <= 50 && state.position - 10 <= 60) {
+            if(state.grassCollision === false && state.grassCollisionAllowed === true) {
+                if ((state.grassX - 50 <= 30 && state.grassX - 50 >= -10) && state.position - 10 <= 40) {
                     console.log("grasscollision")
                     state.grassCollision = true
                     state.grassCollisionAllowed = false
                 }
             }
-            if(state.birdCollision == false && state.birdCollisionAllowed == true) {
-                if(state.birdX - 50 <= 50 && state.position - state.birdY >= 0) {
+            if(state.birdCollision === false && state.birdCollisionAllowed === true) {
+                if((state.birdX - 50 <= 50 && state.birdX - 50 >= -10) && state.position - state.birdY >= 0) {
                     console.log("bird collision")
                     state.birdCollision = true
                     state.birdCollisionAllowed = false
                 }
             }
-            if (state.grassCollision == true || state.birdCollision == true) {
+            if (state.grassCollision === true || state.birdCollision === true) {
                 if(state.health > 0) {
                     state.health -= 1
                     state.grassCollision = false
@@ -137,20 +137,6 @@ export const gameSlice = createSlice({
                 }
             }
             //console.log(state.frame)  
-        },
-        setGameInterval: state => {
-            let timer
-            if(state.status === "playing") {
-                timer = setInterval(() => {
-                    gameTick()
-                    checkCollision()
-                    incrementSpeed()
-                    gameOver()
-                }, 16.67)
-                console.log("Game has started")
-            } else if(state.status === "over") {
-                clearInterval(timer)
-            }
         }
     }
 })

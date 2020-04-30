@@ -13,6 +13,8 @@ import {
     selectStatus,
     gameStart,
     incrementSpeed,
+    selectTime,
+    resetGame,
 } from './minigame2/features/game/eaterGameSlice'
 
 const EatStartGame = () => {
@@ -56,10 +58,11 @@ const useKeyPress = () => {
 function Minigame2() {
     const dispatch = useDispatch()
     useKeyPress()
-    const [ eatGameStatus, setStatus] = useState("playing")
+    const [ eatGameStatus, setStatus ] = useState("playing")
     const score = useSelector(selectScore)
     const status = useSelector(selectStatus)
-
+    const timeRemaining = useSelector(selectTime)
+    let testTimer = timeRemaining
     React.useEffect(() => {
         let eatTimer
         if (eatGameStatus === "playing") {
@@ -67,21 +70,27 @@ function Minigame2() {
                 dispatch(gameTick())
                 dispatch(collisionCheck())
                 dispatch(incrementSpeed())
+                testTimer-= .01667
+                if(testTimer < 0) {
+                    setStatus("new")
+                }
             }, 16.67)
         } else {
-            setStatus("over")
+            console.log("in else : " , eatGameStatus)
             clearInterval(eatTimer)
+            dispatch(resetGame())
         }
     }, [eatGameStatus])
     return(
         <>
+            
             <div
                 style={{
                     position: 'relative',
                     color: 'white',
                     backgroundColor: 'red',
-                    width: '800px',
-                    height: '800px',
+                    width: '600px',
+                    height: '600px',
                     margin: '20px auto'
                 }}
             >
@@ -92,7 +101,7 @@ function Minigame2() {
                     backgroundColor: '#000000',
                     bottom: '80px',
                     height: 3,
-                    width: 800,
+                    width: 598,
                     borderColor: '#000000'
                 }}
             />
@@ -101,9 +110,9 @@ function Minigame2() {
                     position: 'absolute',
                     color: '#000000',
                     backgroundColor: '#000000',
-                    top: '60px',
-                    left: '250px',
-                    height: 733,
+                    top: '-5px',
+                    left: '200px',
+                    height: 595,
                     width: 5,
                     borderColor: '#000000'
                 }}
@@ -113,14 +122,14 @@ function Minigame2() {
                     position: 'absolute',
                     color: '#000000',
                     backgroundColor: '#000000',
-                    top: '60px',
-                    right: '250px',
-                    height: 733,
+                    top: '-5px',
+                    right: '200px',
+                    height: 595,
                     width: 5,
                     borderColor: '#000000'
                 }}
             />  
-                Score: {score}
+                Score: {score} Time Remaining: {timeRemaining}
                 <Ant />
                 <Termite />
                 <Rock />
