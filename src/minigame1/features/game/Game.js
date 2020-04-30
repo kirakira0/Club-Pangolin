@@ -91,6 +91,7 @@ function Game() {
                 dispatch(gameTick())
                 dispatch(checkCollision())
                 frame += 1
+                //console.log(frame)
                 dispatch(incrementSpeed(frame))
                 dispatch(gameOver())
             }, 16.67)

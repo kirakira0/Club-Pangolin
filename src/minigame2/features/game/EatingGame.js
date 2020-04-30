@@ -19,7 +19,7 @@ const EatStartGame = () => {
     return(
         <div className="eaterGameStart">
             <button className="eatGameButton" onClick={() => dispatch(gameStart())}>
-                button
+                BUTOTNSD:LFJKS
             </button>
         </div>
     )/*

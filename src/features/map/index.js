@@ -9,8 +9,6 @@ import { useStore } from 'react-redux';
 //tutorials used: https://www.youtube.com/watch?v=DyWUW7Px1MQ
 //https://www.youtube.com/watch?v=QZcNGfcn-oo&t=1089s
 
-
-
 const MapTile = ({ tile }) => {
     let sprite;
     switch (tile) {
@@ -43,9 +41,9 @@ const MapTile = ({ tile }) => {
         style={{
         width: SPRITE_SIZE,
             height: SPRITE_SIZE,
-            border: "0px solid white",
+            border: "0.0001px solid white",
             padding: '0px',
-            margin: "0px"
+            margin: "0px 0px 0px 0px"
         }}>
 
     </div>
@@ -77,16 +75,15 @@ const Map = ({ tiles }) => {
 
     return (
         <div style={{
-                    position: "relative",
+                    position: "absolute",
                     width: MAP_WIDTH+'px',
                     height: MAP_HEIGHT+'px',
                     backgroundColor: backgrounds[sceneIndex].color,
                     border: '4px solid white',
-                    margin:  '10px auto',
-                    display: 'left'
+            display: 'left',
+                    padding: "0px"
                 }}
         >
-            <Player />
             {scenes[sceneIndex].map(row => row.map(tile => <MapTile tile={tile} />))}
             
             </div>
