@@ -9,17 +9,21 @@ import {db} from './firebase';
 
 function Game() {
 
+    let firebaseData = "";
+
   useEffect(() => {
     // get the whole collection
     db.collection("facts")
     .get()
     .then(querySnapshot => {
       const data = querySnapshot.docs.map(doc => doc.data());
-      console.log(data); 
+        console.log(data); 
+        firebaseData = data[0].diet;
+        console.log(firebaseData);
     });
   }, []); 
 
-    let firebaseData = "bob";
+    
 
   return (
     <div>
