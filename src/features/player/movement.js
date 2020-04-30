@@ -3,6 +3,10 @@ import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from "../../config/constants"
 import { scenes } from "../map/scenes"
 import React, { useState } from 'react';
 
+//tutorials used: https://www.youtube.com/watch?v=DyWUW7Px1MQ
+//https://www.youtube.com/watch?v=QZcNGfcn-oo&t=1089s
+//https://www.youtube.com/watch?v=J6Xs3eGTfTQ
+
 let currentYPos = 0
 let currentXPos = 0
 let sceneIndex = 0
