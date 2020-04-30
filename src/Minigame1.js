@@ -47,7 +47,6 @@ const useKeyPress = () => {
                 dispatch(crouch())
                 break;
             default:
-                console.log(e.keyCode)
         }
     }, [dispatch])
     //keyup
@@ -83,7 +82,6 @@ function Minigame1() {
     React.useEffect(() => {
         let timer
             if(componentStatus === "playing") {
-                console.log("in timer status", status)
                 timer = setInterval(() => {
                     dispatch(gameTick())
                     dispatch(checkCollision())

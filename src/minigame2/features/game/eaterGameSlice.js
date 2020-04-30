@@ -17,14 +17,13 @@ export const eaterGameSlice = createSlice({
     reducers: {
         moveRight: state => {
             if(state.playerPosition[0] === 460) {
-                console.log("can't move that way")
+
             }else {
                 state.playerPosition[0] += 200
             }
         },
         moveLeft: state => {
             if(state.playerPosition[0] === 60) {
-                console.log("can't move that way")
             }
             else {
                 state.playerPosition[0] -= 200
@@ -35,18 +34,15 @@ export const eaterGameSlice = createSlice({
             if((state.antPosition[0] - state.playerPosition[0] === 20) && state.antPosition[1] < 80) {
                 state.antPosition[1] = grabRandomHeight()
                 state.antPosition[0] = grabRandomColumn()
-                console.log("ant collision")
                 state.eatScore += 1
             }
             if((state.termitePosition[0] - state.playerPosition[0] === 20) && state.termitePosition[1] < 80) {
                 state.termitePosition[1] = grabRandomHeight()
                 state.termitePosition[0] = grabRandomColumn()
-                console.log("termite collision")
                 state.eatScore += 1    
             }
             if((state.rockPosition[0] - state.playerPosition[0] === 20) && state.rockPosition[1] < 80) {
                 if(state.eatScore > 0) {
-                    console.log("rock collision")
                     state.rockPosition[1] = grabRandomHeight()
                     state.rockPosition[0] = grabRandomColumn()
                     state.eatScore -= 1  
@@ -76,6 +72,7 @@ export const eaterGameSlice = createSlice({
             state.eatStatus = "playing"
             state.eatScore = 0
             state.timeRemaining = 30
+            state.foodSpeed = 5
         },
         incrementSpeed: state => {
             if(state.eatStatus === "playing") {
@@ -92,20 +89,21 @@ export const eaterGameSlice = createSlice({
                 }
                 
                 if(state.eatFrame % 300 === 0 && state.eatFrame < 2500) {
-                    console.log("this incremented")
                     state.foodSpeed += 1.5
                 }
             }
             
         },
         resetGame: state => {
-            state.eatStatus = "over"
-            state.playerPosition = [ 260, 0 ]
-            state.antPosition = [grabRandomColumn(), 600]
-            state.termitePosition = [grabRandomColumn(), 800]
-            state.rockPosition = [grabRandomColumn(), 1000]
-            state.foodSpeed = 5
-            state.eatFrame = 0
+            if(state.timeRemaining === 0) {
+                state.eatStatus = "over"
+                state.playerPosition = [ 260, 0 ]
+                state.antPosition = [grabRandomColumn(), 600]
+                state.termitePosition = [grabRandomColumn(), 800]
+                state.rockPosition = [grabRandomColumn(), 1000]
+                state.foodSpeed = 5
+                state.eatFrame = 0
+            }
         }
     }
 })

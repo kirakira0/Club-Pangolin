@@ -29,10 +29,8 @@ export const gameSlice = createSlice({
         jump: state => {
             state.height = '80px'
             state.position = 10
-            //isn't changing state, but rather making a new instance with the new state
             if(state.numberOfJumps === 1) {
                 state.numberOfJumps = 0
-                //state.gravity = state.jumpGravity
                 state.gravitySpeed = 0
                 state.gravitySpeed += state.jumpGravity
                 state.position += state.gravitySpeed
@@ -48,14 +46,12 @@ export const gameSlice = createSlice({
         checkCollision: state => {
             if(state.grassCollision === false && state.grassCollisionAllowed === true) {
                 if ((state.grassX - 50 <= 30 && state.grassX - 50 >= -10) && state.position - 10 <= 40) {
-                    console.log("grasscollision")
                     state.grassCollision = true
                     state.grassCollisionAllowed = false
                 }
             }
             if(state.birdCollision === false && state.birdCollisionAllowed === true) {
                 if((state.birdX - 50 <= 50 && state.birdX - 50 >= -10) && state.position - state.birdY >= 0) {
-                    console.log("bird collision")
                     state.birdCollision = true
                     state.birdCollisionAllowed = false
                 }
@@ -130,13 +126,11 @@ export const gameSlice = createSlice({
             if(state.status === "playing") {
                 state.frame += 1
                 if(state.frame % 300 === 0 && state.frame < 3000) {
-                    console.log("this incremented")
                     state.enemySpeed += 1.5
                     state.jumpGravity += 0.5
                     state.gravity += .1
                 }
             }
-            //console.log(state.frame)  
         }
     }
 })

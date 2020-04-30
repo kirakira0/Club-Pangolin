@@ -42,7 +42,6 @@ const useKeyPress = () => {
                 dispatch(moveRight())
                 break
             default:
-                console.log(e.keyCode)
                 
         }
     }, [dispatch])
@@ -70,13 +69,12 @@ function Minigame2() {
                 dispatch(gameTick())
                 dispatch(collisionCheck())
                 dispatch(incrementSpeed())
-                testTimer-= .01667
+                testTimer-= .016666666667
                 if(testTimer < 0) {
                     setStatus("new")
                 }
             }, 16.67)
         } else {
-            console.log("in else : " , eatGameStatus)
             clearInterval(eatTimer)
             dispatch(resetGame())
         }
