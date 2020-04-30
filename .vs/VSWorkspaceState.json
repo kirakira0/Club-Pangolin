@@ -3,10 +3,11 @@
     "",
     "\\public",
     "\\src",
+    "\\src\\config",
     "\\src\\features",
     "\\src\\features\\map",
     "\\src\\features\\player"
   ],
-  "SelectedNode": "\\src\\features\\player\\player_walk.png",
+  "SelectedNode": "\\src\\features\\map\\index.js",
   "PreviewInSolutionExplorer": false
 }

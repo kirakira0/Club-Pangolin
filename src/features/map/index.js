@@ -55,21 +55,19 @@ const Map = ({ tiles }) => {
 
     function handleKeyDown(e) {
         e.preventDefault()
-        switch (e.keyCode) {
-            case 49:
-                return setScene(0);
-            case 50:
-                return setScene(1);
-            case 51:
-                return setScene(2);
-            default:
+        console.log("b")
+        if (store.getState().SceneChange.value === 1 && sceneIndex < 2) {
+            sceneIndex += 1
+            setScene(sceneIndex)
+            store.dispatch({ type: "CHANGE_SCENE", payload: { value: 0 } })
         }
     }
+
+    
 
     window.addEventListener("keydown", (e) => {
         handleKeyDown(e)
     })
-
 
     let [sceneIndex, setScene] = useState(0);
     let currentKey = -1;
@@ -90,5 +88,9 @@ const Map = ({ tiles }) => {
 
             </div>
     )
+
+    
 }
+
+
 export default Map
