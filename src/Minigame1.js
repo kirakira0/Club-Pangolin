@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Player from './minigame1/features/player/Player'
 import Grass from './minigame1/features/obstacles/Grass'
@@ -14,12 +14,15 @@ import {
     gameStart,
     gameOver,
     gameTick,
+    setGameInterval,
+    resetSpeed,
     selectPosition,
     selectHealth,
     selectStatus,
     incrementSpeed,
     selectScore,
 } from './minigame1/features/game/gameSlice'
+
 
 const StartGame = () => {
     const dispatch = useDispatch()
@@ -29,13 +32,8 @@ const StartGame = () => {
             <button 
                 className="button" 
                 onClick={() => dispatch(gameStart())}
-                style={{
-                    position: 'absolute',
-                    bottom: '-40px',
-                    left: '370px'
-                }}
             >
-                Start
+                Start Game
             </button>
         </div>
     )
@@ -83,28 +81,51 @@ const useKeyPress = () => {
 function Minigame1() {
     const dispatch = useDispatch()
     useKeyPress()
+    const [ componentStatus, setStatus] = useState("playing")
     const status = useSelector(selectStatus)
     const health = useSelector(selectHealth)
     const score = useSelector(selectScore)
-    let frame = 0
     React.useEffect(() => {
         let timer
-        if(status === "playing") {
-            timer = setInterval(() => {
-                dispatch(gameTick())
-                dispatch(checkCollision())
-                frame += 1
-                //console.log(frame)
-                dispatch(incrementSpeed(frame))
-                dispatch(gameOver())
-            }, 16.67)
-            console.log("Game has started")
-        }
-    }, [status, dispatch])
+            if(componentStatus === "playing") {
+                console.log("in timer status", status)
+                timer = setInterval(() => {
+                    //console.log("this is still happening")
+                    dispatch(gameTick())
+                    dispatch(checkCollision())
+                    dispatch(incrementSpeed())
+                    dispatch(gameOver())
+                }, 16.67)
+                console.log("Game has started")
+                console.log("timer: ", timer)
+            } else {
+                setStatus("over")
+                clearInterval(timer)
+                dispatch(resetSpeed())
+            }
+    }, [componentStatus])
     return(
         <>  
             <div style={{
+                position: 'relative',
+                left: '50%',
+                top: '50%',
+                backgroundColor: 'green'
+            }}>
+                Instructions:
+                <h2 style={{
+                    fontSize: '90%',
+                    alignContent: 'center'
+                    
+                }}>
+                    To jump over the grass press the up arrow
+                    To crouch under the birds press the down arrow
+                    Last as long as you can!
+                </h2>
+            </div>
+            <div style={{
                 color: 'white',
+                position: 'center',
                 backgroundColor: 'purple',
                 borderColor: 'white',
                 border: '5px',

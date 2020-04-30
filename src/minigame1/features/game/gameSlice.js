@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { grabRandomX } from '../../utils'
 
 export const gameSlice = createSlice({
     name: 'game',
     initialState: {
         //player stuff
+        frame: 0,
         position: 0,
         height: '80px',
         health: 3,
@@ -64,7 +66,6 @@ export const gameSlice = createSlice({
                     state.grassCollision = false
                     state.birdCollision = false
                 }
-                
             }
         },
         gameStart: state => {
@@ -93,6 +94,7 @@ export const gameSlice = createSlice({
                 state.health = 3
                 state.score = 0
                 state.enemySpeed = 5
+                state.frame = 0
                 state.grassCollision = false
                 state.birdCollision = false
             }
@@ -100,12 +102,12 @@ export const gameSlice = createSlice({
         gameTick: state => {
             //some gravity
             if (state.status === "playing") {
-                if(state.grassX < 0) {
-                    state.grassX = 1000
+                if(state.grassX < 0 && state.birdX < 600) {
+                    state.grassX = grabRandomX()
                     state.grassCollisionAllowed = true
                 }
                 if(state.birdX < 0 && state.grassX < 600) {
-                    state.birdX = 1000
+                    state.birdX = grabRandomX()
                     state.birdCollisionAllowed = true
                 }
                 state.grassX -= state.enemySpeed
@@ -119,21 +121,41 @@ export const gameSlice = createSlice({
                     state.position += state.gravitySpeed
                 }
             }
+        },resetSpeed: state => {
+                    state.enemySpeed = 5
+                    state.jumpGravity = 11.5
+                    state.gravity = 0.5
         },
-        incrementSpeed: (state, frame) => {
-            
-            if(frame.payload % 300 === 0 && frame.payload < 3000) {
-                console.log("this incremented")
-                state.enemySpeed += 1.5
-                state.jumpGravity += 0.5
-                state.gravity += .1
+        incrementSpeed: state => {
+            if(state.status === "playing") {
+                state.frame += 1
+                if(state.frame % 300 === 0 && state.frame < 3000) {
+                    console.log("this incremented")
+                    state.enemySpeed += 1.5
+                    state.jumpGravity += 0.5
+                    state.gravity += .1
+                }
             }
-            
+            //console.log(state.frame)  
+        },
+        setGameInterval: state => {
+            let timer
+            if(state.status === "playing") {
+                timer = setInterval(() => {
+                    gameTick()
+                    checkCollision()
+                    incrementSpeed()
+                    gameOver()
+                }, 16.67)
+                console.log("Game has started")
+            } else if(state.status === "over") {
+                clearInterval(timer)
+            }
         }
     }
 })
 
-export const { jump, crouch, uncrouch, checkCollision, gameStart, gameOver, gameTick, incrementSpeed } = gameSlice.actions;
+export const { jump, crouch, uncrouch, checkCollision, gameStart, gameOver, gameTick, incrementSpeed, setGameInterval, resetSpeed } = gameSlice.actions;
 
 //selectors
 export const selectPosition = state => state.game.position

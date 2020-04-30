@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Player from './minigame2/features/player/Player'
 import Ant from './minigame2/features/food/ant/Ant'
@@ -11,7 +11,8 @@ import {
     gameTick,
     selectScore,
     selectStatus,
-    gameStart
+    gameStart,
+    incrementSpeed,
 } from './minigame2/features/game/eaterGameSlice'
 
 const EatStartGame = () => {
@@ -19,25 +20,10 @@ const EatStartGame = () => {
     return(
         <div className="eaterGameStart">
             <button className="eatGameButton" onClick={() => dispatch(gameStart())}>
-                BUTOTNSD:LFJKS
+                Start Game
             </button>
         </div>
-    )/*
-    return(
-        <div className="eat-opening-menu">
-            <button 
-                className="eatButton" 
-                onClick={() => dispatch(gameStart())}
-                style={{
-                    position: 'absolute',
-                    bottom: '80px',
-                    left: '400px'
-                }}
-            >
-                al;skdjfas
-            </button>
-        </div>
-    )*/
+    )
 }
 
 const useKeyPress = () => {
@@ -70,19 +56,23 @@ const useKeyPress = () => {
 function Minigame2() {
     const dispatch = useDispatch()
     useKeyPress()
+    const [ eatGameStatus, setStatus] = useState("playing")
     const score = useSelector(selectScore)
     const status = useSelector(selectStatus)
 
     React.useEffect(() => {
         let eatTimer
-        if (status === "playing") {
+        if (eatGameStatus === "playing") {
             eatTimer = setInterval(() => {
                 dispatch(gameTick())
                 dispatch(collisionCheck())
+                dispatch(incrementSpeed())
             }, 16.67)
+        } else {
+            setStatus("over")
+            clearInterval(eatTimer)
         }
-        
-    })
+    }, [eatGameStatus])
     return(
         <>
             <div
