@@ -78,7 +78,9 @@ export const gameSlice = createSlice({
             state.score = 0
             state.enemySpeed = 5
             state.grassCollision = false
+            state.grassCollisionAllowed = true
             state.birdCollision = false
+            state.birdCollisionAllowed = true
         },
         gameOver: state => {
             if(state.health <= 0){
@@ -119,12 +121,14 @@ export const gameSlice = createSlice({
             }
         },
         incrementSpeed: (state, frame) => {
+            
             if(frame.payload % 300 === 0 && frame.payload < 3000) {
                 console.log("this incremented")
                 state.enemySpeed += 1.5
                 state.jumpGravity += 0.5
                 state.gravity += .1
             }
+            
         }
     }
 })

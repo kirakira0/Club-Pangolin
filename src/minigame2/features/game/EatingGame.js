@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Player from '../player/Player'
 import Ant from '../food/ant/Ant'
+import Termite from '../food/termite/Termite'
+import Rock from '../food/rock/Rock'
 import {
     moveRight,
     moveLeft,
@@ -14,6 +16,13 @@ import {
 
 const EatStartGame = () => {
     const dispatch = useDispatch()
+    return(
+        <div className="eaterGameStart">
+            <button className="eatGameButton" onClick={() => dispatch(gameStart())}>
+                button
+            </button>
+        </div>
+    )/*
     return(
         <div className="eat-opening-menu">
             <button 
@@ -28,7 +37,7 @@ const EatStartGame = () => {
                 al;skdjfas
             </button>
         </div>
-    )
+    )*/
 }
 
 const useKeyPress = () => {
@@ -65,10 +74,11 @@ function EatingGame() {
     const status = useSelector(selectStatus)
 
     React.useEffect(() => {
-        let timer
+        let eatTimer
         if (status === "playing") {
-            timer = setInterval(() => {
+            eatTimer = setInterval(() => {
                 dispatch(gameTick())
+                dispatch(collisionCheck())
             }, 16.67)
         }
         
@@ -122,6 +132,8 @@ function EatingGame() {
             />  
                 Score: {score}
                 <Ant />
+                <Termite />
+                <Rock />
                 <Player />
             </div>
             {(status === "new" || status === "over") && <EatStartGame />}
