@@ -22,6 +22,11 @@ function Game() {
   return (
     <div>
           <h1>Club Pangolin</h1>
+
+          <h2>put instructions here</h2>
+
+          <h2> put data here </h2>
+
           <Link to='/'>Home</Link> 
           <div style={{
               position: "relative",
