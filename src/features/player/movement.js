@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 //https://www.youtube.com/watch?v=QZcNGfcn-oo&t=1089s
 //https://www.youtube.com/watch?v=J6Xs3eGTfTQ
 
-let currentYPos = 0
-let currentXPos = 0
+export let currentYPos = 0
+export let currentXPos = 0
 let sceneIndex = 0
 let isThereNoObjectData = true
 let fireSecondDispatch = false
@@ -25,9 +25,9 @@ function observeSceneChange(currentScene) {
 function observeObject(direction, changeType) {
     const sceneData = scenes
     let currentScene = sceneIndex;
-    console.log("currentYPos " + currentYPos)
-    console.log("currentXPos " + currentXPos)
-    console.log("currentScene " + currentScene)
+    // console.log("currentYPos " + currentYPos)
+    // console.log("currentXPos " + currentXPos)
+    // console.log("currentScene " + currentScene)
     let futureX = 0
     let futureY = 0
     if (direction === "X" && changeType === "+" && !(currentXPos === 20)) { futureX = 1 }
@@ -124,16 +124,21 @@ export default function handleMovement(player) {
                 return dispatchMove('EAST')
             case 40:
                 return dispatchMove('SOUTH')
+            case 13:
+                return console.log("ENTERED FOOL")
+            
             default:
                 console.log(e.keyCode)
         }
     }
 
+
     window.addEventListener("keydown", (e) => {
         handleKeyDown(e)
     })
 
-    
 
     return player
 }
+
+ 

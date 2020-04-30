@@ -1,27 +1,51 @@
 import React, {useEffect} from 'react';
 import Map from './features/map'
+import store from "./config/store"
 import Home from './Home'; 
+import {scenes, sceneIndex} from './features/map/scenes'; 
+import {movement, currentYPos} from './features/player/movement'; 
 import Player from "./features/player"
 import './App.css'
 import { MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE } from './config/constants.js'
 import {Route, Link} from 'react-router-dom'; 
-//import {db} from './firebase'; 
+import {db} from './firebase'; 
 
 function Game() {
 
-//  useEffect(() => {
-//    // get the whole collection
-//    db.collection("facts")
-//    .get()
-//    .then(querySnapshot => {
-//      const data = querySnapshot.docs.map(doc => doc.data());
-//      console.log(data); // array of cities objects
-//    });
-//  }, []); 
+
+
+ useEffect(() => {
+   // get the whole collection
+   db.collection("facts")
+   .get()
+   .then(querySnapshot => {
+     const data = querySnapshot.docs.map(doc => doc.data());
+     console.log(data); 
+     console.log(data[0].diet); 
+     console.log(data[0].sleep); 
+
+   });
+ }, []); 
+
+
+
+
+let oldPos = store.getState().player.position; 
+let ypos = store.getState().player.currentYPos; 
+let storeContent = store.getState();
+
+useEffect(() => {
+  let storeContent = store.getState();
+}, [storeContent]); 
+
+console.log(storeContent); 
+
 
   return (
     <div>
           <h1>Club Pangolin</h1>
+          <h2>{storeContent.position}</h2>
+          {/* <h2>{scenes[sceneIndex][currentY][currentX]}</h2> */}
 
           <h2>put instructions here</h2>
 
