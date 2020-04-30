@@ -1,18 +1,13 @@
 import React, {useEffect} from 'react';
 import Map from './features/map'
-import store from "./config/store"
-import Home from './Home'; 
-import {scenes, sceneIndex} from './features/map/scenes'; 
-import {movement, currentYPos} from './features/player/movement'; 
+import Home from './Home';
 import Player from "./features/player"
 import './App.css'
 import { MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE } from './config/constants.js'
-import {Route, Link} from 'react-router-dom'; 
-import {db} from './firebase'; 
+import {Route, Link} from 'react-router-dom';
+import {db} from './firebase';
 
 function Game() {
-
-
 
  useEffect(() => {
    // get the whole collection
@@ -51,7 +46,7 @@ console.log(storeContent);
 
           <h2> put data here </h2>
 
-          <Link to='/'>Home</Link> 
+          <Link to='/'>Home</Link>
           <div style={{
               position: "relative",
               width: MAP_WIDTH + 'px',

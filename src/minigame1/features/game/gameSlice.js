@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { grabRandomX } from '../../utils'
 
 export const gameSlice = createSlice({
     name: 'game',
     initialState: {
         //player stuff
+        frame: 0,
         position: 0,
         height: '80px',
         health: 3,
@@ -27,10 +29,8 @@ export const gameSlice = createSlice({
         jump: state => {
             state.height = '80px'
             state.position = 10
-            //isn't changing state, but rather making a new instance with the new state
             if(state.numberOfJumps === 1) {
                 state.numberOfJumps = 0
-                //state.gravity = state.jumpGravity
                 state.gravitySpeed = 0
                 state.gravitySpeed += state.jumpGravity
                 state.position += state.gravitySpeed
@@ -44,27 +44,24 @@ export const gameSlice = createSlice({
             state.height = '80px'
         },
         checkCollision: state => {
-            if(state.grassCollision == false && state.grassCollisionAllowed == true) {
-                if (state.grassX - 50 <= 50 && state.position - 10 <= 60) {
-                    console.log("grasscollision")
+            if(state.grassCollision === false && state.grassCollisionAllowed === true) {
+                if ((state.grassX - 50 <= 30 && state.grassX - 50 >= -10) && state.position - 10 <= 40) {
                     state.grassCollision = true
                     state.grassCollisionAllowed = false
                 }
             }
-            if(state.birdCollision == false && state.birdCollisionAllowed == true) {
-                if(state.birdX - 50 <= 50 && state.position - state.birdY >= 0) {
-                    console.log("bird collision")
+            if(state.birdCollision === false && state.birdCollisionAllowed === true) {
+                if((state.birdX - 50 <= 50 && state.birdX - 50 >= -10) && state.position - state.birdY >= 0) {
                     state.birdCollision = true
                     state.birdCollisionAllowed = false
                 }
             }
-            if (state.grassCollision == true || state.birdCollision == true) {
+            if (state.grassCollision === true || state.birdCollision === true) {
                 if(state.health > 0) {
                     state.health -= 1
                     state.grassCollision = false
                     state.birdCollision = false
                 }
-                
             }
         },
         gameStart: state => {
@@ -93,6 +90,7 @@ export const gameSlice = createSlice({
                 state.health = 3
                 state.score = 0
                 state.enemySpeed = 5
+                state.frame = 0
                 state.grassCollision = false
                 state.birdCollision = false
             }
@@ -100,12 +98,12 @@ export const gameSlice = createSlice({
         gameTick: state => {
             //some gravity
             if (state.status === "playing") {
-                if(state.grassX < 0) {
-                    state.grassX = 1000
+                if(state.grassX < 0 && state.birdX < 600) {
+                    state.grassX = grabRandomX()
                     state.grassCollisionAllowed = true
                 }
                 if(state.birdX < 0 && state.grassX < 600) {
-                    state.birdX = 1000
+                    state.birdX = grabRandomX()
                     state.birdCollisionAllowed = true
                 }
                 state.grassX -= state.enemySpeed
@@ -119,21 +117,25 @@ export const gameSlice = createSlice({
                     state.position += state.gravitySpeed
                 }
             }
+        },resetSpeed: state => {
+                    state.enemySpeed = 5
+                    state.jumpGravity = 11.5
+                    state.gravity = 0.5
         },
-        incrementSpeed: (state, frame) => {
-            
-            if(frame.payload % 300 === 0 && frame.payload < 3000) {
-                console.log("this incremented")
-                state.enemySpeed += 1.5
-                state.jumpGravity += 0.5
-                state.gravity += .1
+        incrementSpeed: state => {
+            if(state.status === "playing") {
+                state.frame += 1
+                if(state.frame % 300 === 0 && state.frame < 3000) {
+                    state.enemySpeed += 1.5
+                    state.jumpGravity += 0.5
+                    state.gravity += .1
+                }
             }
-            
         }
     }
 })
 
-export const { jump, crouch, uncrouch, checkCollision, gameStart, gameOver, gameTick, incrementSpeed } = gameSlice.actions;
+export const { jump, crouch, uncrouch, checkCollision, gameStart, gameOver, gameTick, incrementSpeed, setGameInterval, resetSpeed } = gameSlice.actions;
 
 //selectors
 export const selectPosition = state => state.game.position

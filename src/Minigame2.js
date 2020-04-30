@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Player from './minigame2/features/player/Player'
 import Ant from './minigame2/features/food/ant/Ant'
@@ -11,7 +11,10 @@ import {
     gameTick,
     selectScore,
     selectStatus,
-    gameStart
+    gameStart,
+    incrementSpeed,
+    selectTime,
+    resetGame,
 } from './minigame2/features/game/eaterGameSlice'
 
 const EatStartGame = () => {
@@ -19,25 +22,10 @@ const EatStartGame = () => {
     return(
         <div className="eaterGameStart">
             <button className="eatGameButton" onClick={() => dispatch(gameStart())}>
-                BUTOTNSD:LFJKS
+                Start Game
             </button>
         </div>
-    )/*
-    return(
-        <div className="eat-opening-menu">
-            <button 
-                className="eatButton" 
-                onClick={() => dispatch(gameStart())}
-                style={{
-                    position: 'absolute',
-                    bottom: '80px',
-                    left: '400px'
-                }}
-            >
-                al;skdjfas
-            </button>
-        </div>
-    )*/
+    )
 }
 
 const useKeyPress = () => {
@@ -54,7 +42,6 @@ const useKeyPress = () => {
                 dispatch(moveRight())
                 break
             default:
-                console.log(e.keyCode)
                 
         }
     }, [dispatch])
@@ -70,28 +57,38 @@ const useKeyPress = () => {
 function Minigame2() {
     const dispatch = useDispatch()
     useKeyPress()
+    const [ eatGameStatus, setStatus ] = useState("playing")
     const score = useSelector(selectScore)
     const status = useSelector(selectStatus)
-
+    const timeRemaining = useSelector(selectTime)
+    let testTimer = timeRemaining
     React.useEffect(() => {
         let eatTimer
-        if (status === "playing") {
+        if (eatGameStatus === "playing") {
             eatTimer = setInterval(() => {
                 dispatch(gameTick())
                 dispatch(collisionCheck())
+                dispatch(incrementSpeed())
+                testTimer-= .016666666667
+                if(testTimer < 0) {
+                    setStatus("new")
+                }
             }, 16.67)
+        } else {
+            clearInterval(eatTimer)
+            dispatch(resetGame())
         }
-        
-    })
+    }, [eatGameStatus])
     return(
         <>
+            
             <div
                 style={{
                     position: 'relative',
                     color: 'white',
                     backgroundColor: 'red',
-                    width: '800px',
-                    height: '800px',
+                    width: '600px',
+                    height: '600px',
                     margin: '20px auto'
                 }}
             >
@@ -102,7 +99,7 @@ function Minigame2() {
                     backgroundColor: '#000000',
                     bottom: '80px',
                     height: 3,
-                    width: 800,
+                    width: 598,
                     borderColor: '#000000'
                 }}
             />
@@ -111,9 +108,9 @@ function Minigame2() {
                     position: 'absolute',
                     color: '#000000',
                     backgroundColor: '#000000',
-                    top: '60px',
-                    left: '250px',
-                    height: 733,
+                    top: '-5px',
+                    left: '200px',
+                    height: 595,
                     width: 5,
                     borderColor: '#000000'
                 }}
@@ -123,14 +120,14 @@ function Minigame2() {
                     position: 'absolute',
                     color: '#000000',
                     backgroundColor: '#000000',
-                    top: '60px',
-                    right: '250px',
-                    height: 733,
+                    top: '-5px',
+                    right: '200px',
+                    height: 595,
                     width: 5,
                     borderColor: '#000000'
                 }}
             />  
-                Score: {score}
+                Score: {score} Time Remaining: {timeRemaining}
                 <Ant />
                 <Termite />
                 <Rock />
