@@ -23,30 +23,12 @@ function Game() {
  }, []); 
 
 
-
-
-let oldPos = store.getState().player.position; 
-let ypos = store.getState().player.currentYPos; 
-let storeContent = store.getState();
-
-useEffect(() => {
-  let storeContent = store.getState();
-}, [storeContent]); 
-
-console.log(storeContent); 
-
-
   return (
     <div>
           <h1>Club Pangolin</h1>
-          <h2>{storeContent.position}</h2>
-          {/* <h2>{scenes[sceneIndex][currentY][currentX]}</h2> */}
-
-          <h2>put instructions here</h2>
-
-          <h2> put data here </h2>
-
-          <Link to='/'>Home</Link>
+          <p>Return <Link to='/'>Home</Link></p>
+          <p>Explore some of the different environments that pangolins inhabit!</p>
+          <p>Use the arrow keys to move around and the enter key to interact with objects!</p>
           <div style={{
               position: "relative",
               width: MAP_WIDTH + 'px',
