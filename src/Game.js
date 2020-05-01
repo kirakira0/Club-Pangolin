@@ -5,7 +5,11 @@ import Player from "./features/player"
 import './App.css'
 import { MAP_WIDTH, MAP_HEIGHT, SPRITE_SIZE } from './config/constants.js'
 import {Route, Link} from 'react-router-dom'; 
-import {db} from './firebase'; 
+import { db } from './firebase'; 
+import store from "./config/store"
+
+let displayData = "bob";
+let dataBase = null;
 
 function Game() {
 
@@ -14,13 +18,28 @@ function Game() {
    db.collection("facts")
    .get()
    .then(querySnapshot => {
-     const data = querySnapshot.docs.map(doc => doc.data());
+       const data = querySnapshot.docs.map(doc => doc.data());
+       dataBase = data
      console.log(data); 
      console.log(data[0].diet); 
      console.log(data[0].sleep); 
-
+     
    });
  }, []); 
+
+    function handleKeyDown(e) {
+        e.preventDefault()
+        console.log("a")
+        if (store.getState().chest.value === 1) {
+            console.log("you are hitting a chest")
+            displayData = dataBase[0].diet
+            displayData = "bob2"
+        }
+    }
+
+    window.addEventListener("keydown", (e) => {
+        handleKeyDown(e)
+    })
 
   return (
     <div>
@@ -48,7 +67,8 @@ function Game() {
           }}>
               <Player />
               </section>
-              </div>
+          </div>
+          <h2> {displayData} </h2>
     </div>
   );
 }
