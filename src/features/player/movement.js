@@ -96,7 +96,7 @@ export default function handleMovement(player) {
 
 
     function observeBoundaries(oldPos, newPos) {
-        console.log(isThereNoObjectData)
+        // console.log(isThereNoObjectData)
         return (newPos[0] >= 0 && newPos[0] <= MAP_WIDTH - 40) && (newPos[1] >= 0 && newPos[1] <= MAP_HEIGHT - 40) && isThereNoObjectData ? newPos : oldPos
     }
 

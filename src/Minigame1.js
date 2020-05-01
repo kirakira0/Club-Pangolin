@@ -42,7 +42,7 @@ const useKeyPress = () => {
     const dispatch = useDispatch()
     //keydown
     const handleKeyPress = React.useCallback((e) => {
-        e.preventDefault()
+        // e.preventDefault()
         switch(e.keyCode) {
             case 38:
                 dispatch(jump())
@@ -55,7 +55,7 @@ const useKeyPress = () => {
     }, [dispatch])
     //keyup
     const handleKeyUp = React.useCallback((e) => {
-        e.preventDefault()
+        // e.preventDefault()
         switch(e.keyCode) {
             case 40:
                 dispatch(uncrouch())
