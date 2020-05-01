@@ -10,10 +10,10 @@ import {
     moveRight,
     moveLeft,
     collisionCheck,
-    gameTick,
+    gameTick2,
     selectScore,
     selectStatus,
-    gameStart,
+    gameStart2,
     incrementSpeed,
     selectTime,
     resetGame,
@@ -23,7 +23,7 @@ const EatStartGame = () => {
     const dispatch = useDispatch()
     return(
         <div className="eaterGameStart">
-            <button className="eatGameButton" onClick={() => dispatch(gameStart())}>
+            <button className="eatGameButton" onClick={() => dispatch(gameStart2())}>
                 Start Game
             </button>
         </div>
@@ -68,7 +68,7 @@ function Minigame2() {
         let eatTimer
         if (eatGameStatus === "playing") {
             eatTimer = setInterval(() => {
-                dispatch(gameTick())
+                dispatch(gameTick2())
                 dispatch(collisionCheck())
                 dispatch(incrementSpeed())
                 testTimer-= .016666666667
