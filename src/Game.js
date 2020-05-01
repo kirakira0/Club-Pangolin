@@ -8,7 +8,7 @@ import {Route, Link} from 'react-router-dom';
 import { db } from './firebase'; 
 import store from "./config/store"
 
-let displayData = "bob";
+let displayData = "";
 let dataBase = null;
 
 function Game() {
