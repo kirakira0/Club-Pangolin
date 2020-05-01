@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import pangolin from './pangolin.png'
+import pangolin from './pangolin2.png'
 
 function Player(props) {
     return(
@@ -10,7 +10,7 @@ function Player(props) {
                 bottom: props.playerPosition[1],
                 left: props.playerPosition[0],
                 backgroundImage: `url('${pangolin}')`,
-                height: '80px',
+                height: '70px',
                 width: '80px',
             }}
         >
