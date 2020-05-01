@@ -104,6 +104,7 @@ function Minigame1() {
                 left: '25%',
                 top: '50%',
             }}>
+                <p>Return <Link to='/'>Home</Link></p>
                 Instructions:
                 <h2 style={{
                     fontSize: '90%',
