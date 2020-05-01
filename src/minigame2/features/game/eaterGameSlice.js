@@ -49,7 +49,7 @@ export const eaterGameSlice = createSlice({
                 }
             }
         },
-        gameTick: state => {
+        gameTick2: state => {
             if(state.eatStatus === "playing") {
                 if (state.antPosition[1] <= 50 && state.termitePosition[1] < 650 && state.rockPosition[1] < 650) {
                     state.antPosition[1] = grabRandomHeight()
@@ -68,7 +68,7 @@ export const eaterGameSlice = createSlice({
                 state.rockPosition[1] -= state.foodSpeed
             }
         },
-        gameStart: state => {
+        gameStart2: state => {
             state.eatStatus = "playing"
             state.eatScore = 0
             state.timeRemaining = 30
@@ -108,7 +108,7 @@ export const eaterGameSlice = createSlice({
     }
 })
 
-export const { moveRight, moveLeft, collisionCheck, gameTick, gameStart, incrementSpeed, resetGame } = eaterGameSlice.actions
+export const { moveRight, moveLeft, collisionCheck, gameTick2, gameStart2, incrementSpeed, resetGame } = eaterGameSlice.actions
 
 //selectors
 export const selectStatus = state => state.eaterGame.eatStatus
