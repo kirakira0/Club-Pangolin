@@ -20,7 +20,7 @@ export const gameSlice = createSlice({
         grassCollision: false,
         grassCollisionAllowed: true,
         birdX: 1200,
-        birdY: 80,
+        birdY: 60,
         birdCollision: false,
         birdCollisionAllowed: true,
         enemySpeed: 5,
@@ -51,7 +51,7 @@ export const gameSlice = createSlice({
                 }
             }
             if(state.birdCollision === false && state.birdCollisionAllowed === true) {
-                if((state.birdX - 50 <= 50 && state.birdX - 50 >= -10) && state.position - state.birdY >= 0) {
+                if((state.birdX - 50 <= 50 && state.birdX - 50 >= -10) && (state.position - state.birdY >= 0 || (state.height === "80px" && state.position<60))) {
                     state.birdCollision = true
                     state.birdCollisionAllowed = false
                 }
