@@ -1,0 +1,22 @@
+p {
+    /* color: #5e5656;  */
+}
+
+button {
+    display: flex; 
+    justify-content: center;
+    color: #ebf4f6; 
+    background-color: #5e5656;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+}
+
+.eaterGameStart {
+    display: flex; 
+    justify-content: center;   
+}
+
+h1 {
+    font-size: xx-large;
+    color: #5e5656;
+    text-align: center;
+}

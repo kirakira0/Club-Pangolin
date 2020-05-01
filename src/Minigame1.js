@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import {Route, Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import Player from './minigame1/features/player/Player'
 import Grass from './minigame1/features/obstacles/Grass'
@@ -23,10 +24,13 @@ const StartGame = () => {
     const dispatch = useDispatch()
     return (
         <div className="opening-menu">
-            <h3 style={{color: 'red'}}>Welcome to game</h3>
             <button 
                 className="button" 
                 onClick={() => dispatch(gameStart())}
+                style={{
+                    position: 'relative',
+                    left: '45%'
+                }}
             >
                 Start Game
             </button>
@@ -97,39 +101,48 @@ function Minigame1() {
     return(
         <>  
             <div style={{
-                position: 'relative',
-                left: '50%',
+                position: 'absolute',
+                left: '25%',
                 top: '50%',
-                backgroundColor: 'green'
             }}>
+                <p>Return <Link to='/'>Home</Link></p>
                 Instructions:
                 <h2 style={{
                     fontSize: '90%',
-                    alignContent: 'center'
+                    
                     
                 }}>
-                    To jump over the grass press the up arrow
-                    To crouch under the birds press the down arrow
+                    To jump over the grass press the up arrow.
+                    To crouch under the birds press the down arrow.
                     Last as long as you can!
                 </h2>
             </div>
+            {(status === "new" || status === "over") && <StartGame />}
             <div style={{
+                display: 'flex',
+                flexDirection: 'row',
                 color: 'white',
-                position: 'center',
-                backgroundColor: 'purple',
+                position: 'relative',
                 borderColor: 'white',
                 border: '5px',
-                position: 'relative',
+                //position: 'relative',
                 height: '300px',
-                width: '800px',
+                width: '100%',
 
             }}>
-                Health: {health} Score: {score} 
+                <h1
+                    style={{
+                        left: '45%',
+                        top: '100%'
+                    }}
+                >
+                    Health: {health} Score: {score}
+                </h1>
                 <Player />
                 <Grass />
                 <Bird />
             </div>
-            {(status === "new" || status === "over") && <StartGame />}
+            
         </>
         
     )

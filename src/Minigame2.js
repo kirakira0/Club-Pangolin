@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import {Route, Link} from 'react-router-dom';
+import './minigame2/features/game/Minigame2.css'; 
 import { useDispatch, useSelector } from 'react-redux'
 import Player from './minigame2/features/player/Player'
 import Ant from './minigame2/features/food/ant/Ant'
@@ -80,13 +82,15 @@ function Minigame2() {
         }
     }, [eatGameStatus])
     return(
-        <>
-            
+        <> 
+            <h1>Nutrition Mission</h1>
+            <p>Return <Link to='/'>Home</Link></p>
+            <p>You have a score of {score} and a total of {timeRemaining} seconds left.</p>
             <div
                 style={{
                     position: 'relative',
                     color: 'white',
-                    backgroundColor: 'red',
+                    backgroundColor: '#bdeaee',
                     width: '600px',
                     height: '600px',
                     margin: '20px auto'
@@ -127,7 +131,8 @@ function Minigame2() {
                     borderColor: '#000000'
                 }}
             />  
-                Score: {score} Time Remaining: {timeRemaining}
+                {/* <p>Score: {score} </p>
+                <p>Time Remaining: {timeRemaining}</p> */}
                 <Ant />
                 <Termite />
                 <Rock />
