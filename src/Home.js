@@ -47,11 +47,11 @@ function Home() {
                          about pangolins in a more interactive way.
                     </p>
                     <h2>Exploration Game</h2>
-                        <p>A sentence introduction and then a link to <Link to='/game'> exploration game</Link></p>
-                    <h2>Title of Minigame 1</h2>
-                        <p>A sentence introduction and then a link to <Link to='/minigame1'>Minigame 1</Link></p>
-                    <h2>Title of Minigame 2</h2>
-                        <p>A sentence introduction and then a link to <Link to='/minigame2'>Minigame 2</Link></p>
+                        <p>Discover different pangolin habitats in the <Link to='/game' target="_blank"> exploration game</Link></p>
+                    <h2>Pangolin Run Minigame</h2>
+                        <p>Help a pangolin race through the forest without hitting plants or birds in <Link to='/minigame1' target="_blank">Pangolin Run Minigame</Link></p>
+                    <h2>Nutrition Mission Minigame</h2>
+                        <p>Help a pangolin get a meal without being hit by any rocks in <Link to='/minigame2' target="_blank">Nutrition Mission Minigame</Link></p>
                     <h2>Credits</h2>
                     <p>Club Pangolin was created by Maya Epps (Github username: mayaepps), Julian Gonzalez (Jgonz156)
                         Josh Stukenborg (jstukenb), and Kira Toal (kirakira0). Information about the specific technologies
