@@ -22,7 +22,7 @@ function Termite(props) {
 function mapStateToProps(state) {
     return{
         ...state.eaterGame,
-        antPosition: state.eaterGame.termitePosition
+        termitePosition: state.eaterGame.termitePosition
     }
 }
 

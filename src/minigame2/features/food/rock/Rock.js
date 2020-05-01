@@ -22,7 +22,7 @@ function Rock(props) {
 function mapStateToProps(state) {
     return{
         ...state.eaterGame,
-        antPosition: state.eaterGame.rockPosition
+        rockPosition: state.eaterGame.rockPosition
     }
 }
 

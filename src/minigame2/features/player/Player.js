@@ -22,7 +22,7 @@ function Player(props) {
 function mapStateToProps(state) {
     return{
         ...state.eaterGame,
-        position: state.eaterGame.playerPosition
+        playerPosition: state.eaterGame.playerPosition
     }
 }
 
